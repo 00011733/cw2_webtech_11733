@@ -58,9 +58,9 @@ app.get('/createNew', function(req,res){
 
 // CREATE POST REQ
 app.post('/createGoal',
-    body("title").isLength({ min: 1 }).withMessage("Title must not be empty"),
+    body("title").isLength({ min: 1 }).withMessage("Title cannot be empty"),
     body("category").isLength({ min: 1 }).withMessage("Please choose category"),
-    body("description").isLength({ min: 10 }).withMessage("Description must contain at least 10 characters"),
+    body("description").isLength({ min: 7 }).withMessage("Description must contain at least 7 characters"),
     async function(req,res){
         let id = req.params.id
         let goal = await Goal.findByPk(id)
@@ -111,19 +111,53 @@ app.get('/update/:id', async (req,res) => {
     })
 })
 
-app.post('/updateGoal/:id', async function(req,res) {
-    let id = req.params.id
+app.post('/updateGoal/:id',
+    body("title").isLength({ min: 1 }).withMessage("Title cannot be empty"),
+    body("category").isLength({ min: 1 }).withMessage("Please choose category"),
+    body("description").isLength({ min: 7 }).withMessage("Description must contain at least 7 characters"),
 
-    let updatedGoal = await Goal.update({
-        title: req.body.title,
-        category: req.body.category,
-        description: req.body.description
-    }, {
-        where: {
-            id: id
+    async function(req,res) {
+        // VALIDATION
+        let id = req.params.id
+        let goal = await Goal.findByPk(id)
+
+        const err = validationResult(req)
+        let titleError = null
+        let categoryError = null
+        let descriptionError = null
+        if(!err.isEmpty()) {
+            const errors = err.array()
+            for (error of errors){
+                if (error.param == "title") {
+                    titleError = error.msg
+                }
+                if (error.param == "category") {
+                    categoryError = error.msg
+                }
+                if (error.param == "description") {
+                    descriptionError = error.msg
+                }
+            }
+            res.render('add-update', {
+                goal: goal,
+                titleError: titleError,
+                categoryError: categoryError,
+                descriptionError: descriptionError
+            })
+
+        } else {
+            let id = req.params.id
+            let updatedGoal = await Goal.update({
+                title: req.body.title,
+                category: req.body.category,
+                description: req.body.description
+            }, {
+                where: {
+                    id: id
+                }
+            })
+            res.redirect(`/?updated=true`)
         }
-    })
-    res.redirect(`/?updated=true`)
 })
 
 // Delete

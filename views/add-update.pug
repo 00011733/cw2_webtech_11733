@@ -8,20 +8,26 @@ block content
                 label(for="title") Title
                     i.fa-solid.fa-star-of-life.text-danger.star
                 input.form-control#title(type="text" name="title" placeholder="Goal Title" value= goal.title)
+                if titleError 
+                    small.text-danger #{ titleError }
             div.form-group.mb-3
                 label(for="category") Category 
                     i.fa-solid.fa-star-of-life.text-danger.star
                 select.form-control#category(name="category")
                     if cats
-                        option(selected)= cats[goal.category] 
+                        option(selected value= goal.category)= cats[goal.category] 
                     option(value="0") Business  
                     option(value="1") Sports 
                     option(value="2") Self-Development  
                     option(value="3") Family  
+                if categoryError 
+                    small.text-danger #{ categoryError }
             div.form-group.mb-3
                 label(for="description") Description 
                     i.fa-solid.fa-star-of-life.text-danger.star
                 textarea#description.form-control(name="description", cols="30", rows="8",placeholder="Goal Description")= goal.description
+                if descriptionError 
+                    small.text-danger #{ descriptionError }
             button.btn.btn-success.btn-success-xl(type='submit') Update 
     else
         form(action='/createGoal' method="POST")
