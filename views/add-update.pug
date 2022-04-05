@@ -28,7 +28,7 @@ block content
                 textarea#description.form-control(name="description", cols="30", rows="8",placeholder="Goal Description")= goal.description
                 if descriptionError 
                     small.text-danger #{ descriptionError }
-            button.btn.btn-success.btn-success-xl(type='submit') Update 
+            button.btn.btn-success.alert-btn(type='submit') Update 
     else
         form(action='/createGoal' method="POST")
             h1.text-center Create Goal
@@ -55,4 +55,4 @@ block content
                 textarea#description.form-control(name="description", cols="30", rows="8",placeholder="Goal Description")
                 if descriptionError 
                     small.text-danger #{ descriptionError }
-            button.btn.btn-primary.btn-primary-xl(type='submit') Create
+            button.btn.btn-primary.alert-btn(type='submit') Create

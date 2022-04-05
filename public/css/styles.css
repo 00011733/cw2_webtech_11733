@@ -28,3 +28,7 @@ label{
 .card{
     min-height: 40vh;
 }
+
+.display-none {
+    display: none!important;
+}
