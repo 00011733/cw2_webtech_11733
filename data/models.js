@@ -11,13 +11,13 @@ const Goal = db.define('Goal', {
     title: {
         type: DataTypes.STRING
     },
-    description: {
-        type: DataTypes.STRING
-    },
     category: {
         type: DataTypes.INTEGER
     },
-    isLongTerm: {
+    description: {
+        type: DataTypes.STRING
+    },
+    done: {
         type: DataTypes.BOOLEAN
     }
 }, {

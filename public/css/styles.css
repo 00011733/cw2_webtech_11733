@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    min-height: 80vh;
+}
+.navbar-brand{
+    font-weight: 600;
+}
+label{
+    display: flex;
+    align-items: center;
+}
+.star{
+    font-size: 7px;
+    margin-left: 2px;
+}
+
+.update:hover{
+    color: green;
+}
+.delete:hover{
+    color: red;
+}
+
+.card{
+    min-height: 30vh;
+}

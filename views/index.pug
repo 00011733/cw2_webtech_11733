@@ -1,7 +1,21 @@
 extends layout.pug 
 
 block content 
-    h1 Heading 
-    ul 
-        li Great 
-        li Awesome 
+    h1.text-center All Goals
+    .row
+        if (goals.length)
+            each goal in goals
+                .col-4.mb-4
+                    .card
+                        if cats
+                            h6.card-header= cats[goal.category] 
+                        .card-body
+                            h5.card-title= goal.title
+                            p.card-text.text-break= goal.description 
+                            
+                        .card-footer.d-flex.justify-content-end 
+                            a.mx-2.text-secondary(href=`/update/${ goal.id }`)
+                                i.fa-solid.fa-pen-to-square.update
+                            a.mx-2.text-secondary(href=`/deleteGoal/${ goal.id }`)
+                                i.fa-solid.fa-trash.delete
+                
