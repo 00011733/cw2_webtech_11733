@@ -27,27 +27,52 @@ app.get('/', async function(req,res) {
         3: "Family"
     }
     // ERROR HANDLING
-    try {
-        goals = await Goal.findAll()
-
+    try {        
+        let cat = req.query.category;
+        
+        if (cat !== undefined){
+            goals = await Goal.findAll({
+                where: {
+                    category: cat
+                }
+            })
+        } else {
+            goals = await Goal.findAll()
+        }
+        
         let id = req.query.id != undefined ? req.query.id : undefined
         let updated = req.query.updated == "true" ? true : false
         let deleted = req.query.deleted == "true" ? true : false
         let done = req.query.done == "true" ? true : false
+
+        
 
         res.render('index', {
             goals: goals,
             id: id,
             updated: updated,
             deleted: deleted,
-            done: done,
-            cats: cats
+            cats: cats,
+            cat: cat
         })
 
     } catch {
         goals = [],
         res.render('index', { goals: goals })
     }
+})
+
+// SORT
+app.get('/', async function(req,res){
+    let goals = null    
+    let cat = req.query.category != undefined ? req.query.category : undefined
+    
+    goals = await Goal.findAll({
+        where: {
+            category: cat
+        }
+    })
+    res.render('index', { goals: goals })
 })
 
 // CREATE GET REQUEST
@@ -171,7 +196,6 @@ app.get('/deleteGoal/:id', async (req,res) => {
 
     res.redirect(`/?deleted=true`)
 })
-
 
 
 

@@ -14,7 +14,11 @@ block content
             p.alert.alert-primary.d-flex.justify-content-between.align-items-center 
                 span Successfully Created!
                 i.fa-solid.fa-xmark.close
-    h1.text-center.border-bottom.py-2 All Goals
+        if cats 
+            if cat 
+                h1.text-center.border-bottom.py-2 #{ cats[cat] } Goals
+            else 
+                h1.text-center.border-bottom.py-2 All Goals
     .row.my-4
         if (goals.length)
             each goal in goals
@@ -31,6 +35,7 @@ block content
                                 i.fa-solid.fa-pen-to-square.update
                             a.mx-2.text-secondary.alert-btn(href=`/deleteGoal/${ goal.id }`)
                                 i.fa-solid.fa-trash.delete
+        
         else 
             p.alert.alert-warning No Goals Available
             a.col-12.btn.btn-primary(href='/createNew') New Goal

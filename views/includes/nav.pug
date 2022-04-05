@@ -2,7 +2,21 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
     .container-fluid
         a.navbar-brand.text-uppercase.text-dark(href='/') Goal Maker 
         ul.nav 
+            label.mx-2(for="dropdownMenuBtn") Choose category 
             li.nav-item 
-                a.btn.btn-outline-secondary(href='/') List All 
+                .dropstart.btn-group 
+                    button.btn.btn-outline-secondary.dropdown-toggle#dropdownMenuBtn(type="button" data-bs-toggle="dropdown" aria-expanded="false") All 
+                    ul.dropdown-menu(aria-labelledby="dropdownMenuBtn")
+                        li 
+                            a.dropdown-item(href=`/`) All
+                        li 
+                            a.dropdown-item(href=`/?category=0`) Business 
+                        li 
+                            a.dropdown-item(href=`/?category=1`) Sports  
+                        li 
+                            a.dropdown-item(href=`/?category=2`) Self-Development 
+                        li 
+                            a.dropdown-item(href=`/?category=3`) Family  
+
             li.nav-item.ms-3 
                 a.btn.btn-outline-primary.alert-btn(href='/createNew') Create 
