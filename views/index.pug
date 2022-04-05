@@ -7,13 +7,13 @@ block content
                 span Successfully Deleted!
                 i.fa-solid.fa-xmark.close
         if updated 
-            p.alert.alert-success
-            span Successfully Updated!
-            i.fa-solid.fa-xmark.close
+            p.alert.alert-success.d-flex.justify-content-between.align-items-center
+                span Successfully Updated!
+                i.fa-solid.fa-xmark.close
         if id
-            p.alert.alert-primary 
-            span Successfully Created!
-            i.fa-solid.fa-xmark.close
+            p.alert.alert-primary.d-flex.justify-content-between.align-items-center 
+                span Successfully Created!
+                i.fa-solid.fa-xmark.close
     h1.text-center.border-bottom.py-2 All Goals
     .row.my-4
         if (goals.length)
