@@ -1,4 +1,4 @@
-const { sequelize } = require('sequelize')
+const { Sequelize } = require('sequelize')
 
 const db = new Sequelize('Goals', 'admin', 'admin', {
     host: 'db.sqlite3',
